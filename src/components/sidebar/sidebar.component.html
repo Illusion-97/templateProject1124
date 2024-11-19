@@ -3,7 +3,8 @@
 
     <!-- Search -->
     <section id="search" class="alt">
-      <app-search [childValue]="parentValue" (childValueChange)="parentValue = $event" />
+<!--      <app-search [childValue]="parentValue" (childValueChange)="parentValue = $event" />-->
+      <app-search [(childValue)]="parentValue" />
       Parent Value : {{parentValue}}
     </section>
 
