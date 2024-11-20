@@ -24,9 +24,19 @@ export const routes: Routes = [
       .then(m => m.ElementsComponent)
   },
   {
+    path: "form-control",
+    loadComponent: () => import('../views/form-control/form-control.component')
+      .then(m => m.FormControlComponent)
+  },
+  {
     path: "login",
     loadComponent: () => import('../views/login/login.component')
       .then(m => m.LoginComponent)
+  },
+  {
+    path: "register",
+    loadComponent: () => import('../views/register/register.component')
+      .then(m => m.RegisterComponent)
   },
   {
     path: "**", // Wildcard (toute valeur)

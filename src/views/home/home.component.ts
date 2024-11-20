@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
+import {Article} from './article';
+import {ArticleComponent} from './article/article.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [
+    ArticleComponent
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -64,13 +68,4 @@ export class HomeComponent {
       alt: "",
       lien: "#"
     }]
-}
-
-export interface Article {
-  id: number;
-  src?: string;
-  alt: string;
-  titre: string;
-  description: string;
-  lien: string;
 }
