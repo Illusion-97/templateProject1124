@@ -39,6 +39,11 @@ export const routes: Routes = [
       .then(m => m.RegisterComponent)
   },
   {
+    path: "editor",
+    loadComponent: () => import('../views/article-editor/article-editor.component')
+      .then(m => m.ArticleEditorComponent)
+  },
+  {
     path: "**", // Wildcard (toute valeur)
     loadComponent: () => import('../views/not-found/not-found.component')
       .then(m => m.NotFoundComponent)
