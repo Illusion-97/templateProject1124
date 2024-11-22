@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "email": "yanis@gmail.com",
+      "password": "$2a$10$CRWRkWqzTEDDsY52IiwzPeAuSx0e4tyQY6Mfic7F52TosB0.zyY/W",
+      "id": 1,
+      "username": "Yanis"
+    }
+  ],
+  "articles": []
+}

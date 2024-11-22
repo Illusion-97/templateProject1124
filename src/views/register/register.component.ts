@@ -10,6 +10,8 @@ import {
 } from '@angular/forms';
 import {JsonPipe} from '@angular/common';
 import {AbstractFormComponent} from '../../tools/abstract-form-component';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -37,8 +39,12 @@ export class RegisterComponent extends AbstractFormComponent {
     password: this.passwordControl
   })
 
+  constructor(private http: HttpClient) {
+    super();
+  }
+
   onSubmit$(): void {
-    console.log("USER : ", this.form.value)
+    this.http.post("http://localhost:3000/register",this.form.value).subscribe()
   }
 }
 
