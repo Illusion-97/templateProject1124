@@ -7,5 +7,14 @@
       "username": "Yanis"
     }
   ],
-  "articles": []
+  "articles": [
+    {
+      "id": 1,
+      "src": "pic05.jpg",
+      "lien": "O",
+      "titre": "TryMeh",
+      "alt": "Halte",
+      "description": "TWSS"
+    }
+  ]
 }

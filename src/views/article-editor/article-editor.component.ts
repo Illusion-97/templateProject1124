@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {AbstractFormComponent} from '../../tools/abstract-form-component';
+import {HttpClient} from '@angular/common/http';
+import {ArticleService} from '../../services/article.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-article-editor',
@@ -23,7 +26,16 @@ export class ArticleEditorComponent extends AbstractFormComponent {
     .fill(0) // affecte la même valeur à tous les éléments du tableau
     .map((v,i) => `pic${(i+1).toString().padStart(2,'0')}.jpg`) // transforme chaque valeur en utilisant ici leur index
 
+
+
+
+  /*constructor(private service: ArticleService, private router: Router) {
+    super();
+  }*/
+  private service = inject(ArticleService)
+  private router = inject(Router)
+
   onSubmit$(): void {
-    console.log("Article : ", this.form.value)
+    this.service.save(this.form.value).subscribe()
   }
 }
