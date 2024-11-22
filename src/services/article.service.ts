@@ -24,7 +24,6 @@ export class ArticleService {
 
   update(article: Article) {
     return this.http.put<Article>(`${this.ENDPOINT}/${article.id}`, article)
-
   }
 
   delete(id: number) {
