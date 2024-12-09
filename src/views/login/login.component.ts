@@ -1,6 +1,8 @@
 import {Component, inject} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,12 +17,16 @@ export class LoginComponent {
     password: ""
   }
 
-  private http = inject(HttpClient)
+  private auth = inject(AuthService)
+  private router = inject(Router)
 
   onSubmit(form: HTMLFormElement) {
     if(form.checkValidity()) {
-      this.http.post("/login",this.credentials).subscribe({
-        next: response => console.log(response),
+      this.auth.login(this.credentials).subscribe({
+        next: response => {
+          console.log(response)
+          this.router.navigate(['/home'])
+        },
         error: err => console.log(err)
       })
       form.reset()

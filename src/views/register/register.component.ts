@@ -12,6 +12,8 @@ import {JsonPipe} from '@angular/common';
 import {AbstractFormComponent} from '../../tools/abstract-form-component';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {Router} from '@angular/router';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -39,12 +41,13 @@ export class RegisterComponent extends AbstractFormComponent {
     password: this.passwordControl
   })
 
-  constructor(private http: HttpClient) {
+  constructor(private auth: AuthService, private router: Router) {
     super();
   }
 
   onSubmit$(): void {
-    this.http.post("/register",this.form.value).subscribe()
+    this.auth.register(this.form.value)
+      .subscribe(() => this.router.navigate(['/login']))
   }
 }
 
