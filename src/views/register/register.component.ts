@@ -44,7 +44,7 @@ export class RegisterComponent extends AbstractFormComponent {
   }
 
   onSubmit$(): void {
-    this.http.post("http://localhost:3000/register",this.form.value).subscribe()
+    this.http.post("/register",this.form.value).subscribe()
   }
 }
 
