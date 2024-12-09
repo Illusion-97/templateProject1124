@@ -16,10 +16,10 @@ export class ArticleEditorComponent extends AbstractFormComponent {
   form: FormGroup = new FormGroup({
     id: new FormControl(0),
     src: new FormControl(null),
-    lien: new FormControl("", {validators: [Validators.required]}),
-    titre: new FormControl("", {validators: [Validators.required]}),
-    alt: new FormControl("", {validators: [Validators.required]}),
-    description: new FormControl("", {validators: [Validators.required]})
+    lien: new FormControl("Link", {validators: [Validators.required]}),
+    titre: new FormControl("Try", {validators: [Validators.required]}),
+    alt: new FormControl("Halte", {validators: [Validators.required]}),
+    description: new FormControl("Descript", {validators: [Validators.required]})
   });
 
   pics: string[] = new Array(11) // crée un tableau de la taille souhaitée

@@ -6,5 +6,5 @@ import {AbstractService} from '../tools/abstract-service';
   providedIn: 'root'
 })
 export class ArticleService extends AbstractService<Article> {
-  protected readonly ENDPOINT : string = "/articles"
+  protected readonly ENDPOINT : string = "/664/articles"
 }
