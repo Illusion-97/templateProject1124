@@ -43,7 +43,7 @@ export class AuthService {
   }
 
   logout(): void {
-
+    this.currentResponse.next(undefined)
   }
 }
 

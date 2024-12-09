@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {SearchComponent} from './search/search.component';
 import {MiniPost, MiniPostComponent} from './mini-post/mini-post.component';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -18,6 +19,8 @@ export class SidebarComponent {
   parentValue : string = "parentValue"
 
   @Output() moreClicked: EventEmitter<string> = new EventEmitter<string>()
+
+  protected auth = inject(AuthService)
 
   minipost1 : MiniPost = {
     alt: 'Image alt',
