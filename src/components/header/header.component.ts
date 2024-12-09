@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -43,4 +44,6 @@ export class HeaderComponent {
   }*/
 
   titre: string = "UnTitre"
+
+  protected auth: AuthService = inject(AuthService);
 }
