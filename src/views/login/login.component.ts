@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -14,9 +15,14 @@ export class LoginComponent {
     password: ""
   }
 
+  private http = inject(HttpClient)
+
   onSubmit(form: HTMLFormElement) {
     if(form.checkValidity()) {
-      console.log(this.credentials)
+      this.http.post("/login",this.credentials).subscribe({
+        next: response => console.log(response),
+        error: err => console.log(err)
+      })
       form.reset()
     }
   }
