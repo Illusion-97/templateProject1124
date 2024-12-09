@@ -1,8 +1,10 @@
 import {inject, Injectable} from '@angular/core';
 import {User} from '../views/register/register.component';
-import {BehaviorSubject, Observable, tap} from 'rxjs';
+import {BehaviorSubject, Observable, skip, tap} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Credentials} from '../views/login/login.component';
+import {authGuard} from '../tools/auth.guard';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +30,25 @@ export class AuthService {
   }
 
   private http: HttpClient = inject(HttpClient)
+  private router = inject(Router)
+  private readonly AUTH_KEY = "AUTH_RESPONSE"
+
+  constructor() {
+    const auth = sessionStorage.getItem(this.AUTH_KEY)
+    if(auth) {
+      this.currentResponse.next(JSON.parse(auth))
+    }
+
+    this.currentResponse.pipe(skip(1)).subscribe(response => {
+      if(response){
+        sessionStorage.setItem(this.AUTH_KEY, JSON.stringify(response))
+      }
+      else {
+        this.router.navigate(['/home'])
+        sessionStorage.clear()
+      }
+    })
+  }
 
   login(credential: Credentials): Observable<AuthResponse> {
     return this.http.post<AuthResponse>("/login", credential)

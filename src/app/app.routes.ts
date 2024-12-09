@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import {authGuard} from '../tools/auth.guard';
 
 export const routes: Routes = [
   {
@@ -41,7 +42,8 @@ export const routes: Routes = [
   {
     path: "editor/:id",
     loadComponent: () => import('../views/article-editor/article-editor.component')
-      .then(m => m.ArticleEditorComponent)
+      .then(m => m.ArticleEditorComponent),
+    canMatch: [authGuard]
   },
   {
     path: "**", // Wildcard (toute valeur)

@@ -13,8 +13,8 @@ import {AuthService} from '../../services/auth.service';
 })
 export class LoginComponent {
   credentials : Credentials = {
-    email: "",
-    password: ""
+    email: "yanis@gmail.com",
+    password: "Password"
   }
 
   private auth = inject(AuthService)

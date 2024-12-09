@@ -1,5 +1,5 @@
 import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {SearchComponent} from './search/search.component';
 import {MiniPost, MiniPostComponent} from './mini-post/mini-post.component';
 import {AuthService} from '../../services/auth.service';

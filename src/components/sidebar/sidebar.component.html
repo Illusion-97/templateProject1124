@@ -15,14 +15,17 @@
       </header>
       <ul>
         <li><a routerLink="home">Homepage</a></li>
-        <li><a routerLink="login">Login</a></li>
-        <li><a routerLink="register">Register</a></li>
-        <li><button (click)="auth.logout()">Logout</button></li>
         <li><a routerLink="generic">Generic</a></li>
         <li><a routerLink="elements">Elements</a></li>
-        <li><a routerLink="editor/0">Nouvel Article</a></li>
-        <li><a routerLink="form-control">Form Control</a></li>
         <li><a routerLink="notfound">Not Found</a></li>
+        @if(auth.isLogged) {
+          <li><a routerLink="editor/0">Nouvel Article</a></li>
+          <li><a routerLink="form-control">Form Control</a></li>
+          <li><button (click)="auth.logout()">Logout</button></li>
+        } @else {
+          <li><a routerLink="login">Login</a></li>
+          <li><a routerLink="register">Register</a></li>
+        }
       </ul>
     </nav>
 
