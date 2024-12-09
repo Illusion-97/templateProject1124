@@ -30,13 +30,13 @@ export class ArticleEditorComponent extends AbstractFormComponent {
     super();
     route.paramMap.subscribe(param => {
       const id: number = +param.get('id')!
-      service.byId(id).subscribe({
+      if(id) service.byId(id).subscribe({
         // résultat obtenu à chaque changement quand tout se passe bien
         next: result => this.form.patchValue(result),
         // annonce qu'il n'y aura plus de changement emit
         complete: () => console.log("Fin des appels"),
         // en cas d'erreur lors d'une tentative de changement
-        error: e => this.form.reset()
+        error: e => router.navigate(['/editor/0'])
       })
     })
   }
