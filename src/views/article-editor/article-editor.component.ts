@@ -16,9 +16,9 @@ export class ArticleEditorComponent extends AbstractFormComponent {
   form: FormGroup = new FormGroup({
     id: new FormControl(0),
     src: new FormControl(null),
-    lien: new FormControl("Link", {validators: [Validators.required]}),
-    titre: new FormControl("Try", {validators: [Validators.required]}),
-    alt: new FormControl("Halte", {validators: [Validators.required]}),
+    lien: new FormControl("Link", {validators: [Validators.required], nonNullable: true}),
+    titre: new FormControl("Try", {validators: [Validators.required], nonNullable: true}),
+    alt: new FormControl("Halte", {validators: [Validators.required], nonNullable: true}),
     description: new FormControl("Descript", {validators: [Validators.required]})
   });
 
@@ -28,7 +28,7 @@ export class ArticleEditorComponent extends AbstractFormComponent {
 
   constructor(private service: ArticleService, private router: Router, route: ActivatedRoute) {
     super();
-    route.paramMap.subscribe(param => {
+    /*route.paramMap.subscribe(param => {
       const id: number = +param.get('id')!
       if(id) service.byId(id).subscribe({
         // résultat obtenu à chaque changement quand tout se passe bien
@@ -37,6 +37,13 @@ export class ArticleEditorComponent extends AbstractFormComponent {
         complete: () => console.log("Fin des appels"),
         // en cas d'erreur lors d'une tentative de changement
         error: e => router.navigate(['/editor/0'])
+      })
+    })*/
+    route.data.subscribe(({article}) => {
+      if (article) this.form.patchValue(article)
+      else this.form.reset({
+        id: 0,
+        description: "Description Reset"
       })
     })
   }

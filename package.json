@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "open": "ng serve -o",
-    "backend": "json-server --watch db.json -m ./node_modules/json-server-auth"
+    "backend": "json-server --watch db.json -m ./node_modules/json-server-auth -d 5000"
   },
   "private": true,
   "dependencies": {

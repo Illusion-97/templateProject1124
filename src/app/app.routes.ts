@@ -1,5 +1,8 @@
-import { Routes } from '@angular/router';
+import {ActivatedRouteSnapshot, RouterStateSnapshot, Routes} from '@angular/router';
 import {authGuard} from '../tools/auth.guard';
+import {inject} from '@angular/core';
+import {ArticleService} from '../services/article.service';
+import {catchError, of} from 'rxjs';
 
 export const routes: Routes = [
   {
@@ -12,7 +15,10 @@ export const routes: Routes = [
     path: "home",
     // loadComponent: () => import().then(m => )
     loadComponent: () => import('../views/home/home.component')
-      .then(m => m.HomeComponent)
+      .then(m => m.HomeComponent),
+    resolve: {
+      articles: () => inject(ArticleService).all()
+    }
   },
   {
     path: "generic",
@@ -43,7 +49,13 @@ export const routes: Routes = [
     path: "editor/:id",
     loadComponent: () => import('../views/article-editor/article-editor.component')
       .then(m => m.ArticleEditorComponent),
-    canMatch: [authGuard]
+    canMatch: [authGuard],
+    resolve: {
+      article: (route:ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+        const id = +(route.paramMap.get('id') || 0)
+        return id ? inject(ArticleService).byId(id).pipe(catchError(() => of(undefined))) : undefined
+      }
+    }
   },
   {
     path: "**", // Wildcard (toute valeur)
